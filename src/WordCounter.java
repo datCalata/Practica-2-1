@@ -38,7 +38,7 @@ public class WordCounter {
         getDatos();
         int cnt = 0;
         for(int i = 0; i < s2.length;i++){
-            if(s2[i].getCnt() < c){
+            if(s2[i].getCnt() <= c){
                 cnt++;
             }
         }
@@ -54,12 +54,12 @@ public class WordCounter {
      */
     public List<Registro> getTop(int n) {
         getDatos();
-        int num = Math.min(n,s2.length);
+        int num = Math.min(Math.abs(n),s2.length);
         List<Registro> miLista;
         if(n < 0){
-           miLista = getPalabrasMenosUsadas(Math.abs(n));
+           miLista = getPalabrasMenosUsadas(num);
         }else{
-            miLista = getPalabrasMasUsadas(Math.abs(n));
+            miLista = getPalabrasMasUsadas(num);
         }
         return miLista;
     }
@@ -101,10 +101,11 @@ public class WordCounter {
      * @param word
      */
     private void put(String word) {
-            if(!s1.containsKey(word)){
+        Registro dato = s1.get(word);
+            if(dato == null){
                 s1.put(word,new Registro(word));
             }else{
-                s1.get(word).inc();
+                dato.inc();
             }
     }
 
@@ -127,7 +128,7 @@ public class WordCounter {
     /**
      * Descarga del diccionario al array de datos
      */
-    public void getDatos() {
+    private void getDatos() {
         if (s2 == null) {
             Collection<Registro> values = s1.values();
             s2 = new Registro[values.size()];
@@ -157,10 +158,9 @@ public class WordCounter {
                 + "¿Mi única patria? ¡La mar!";
         WordCounter wc = new WordCounter();
         wc.load(text);
-        wc.getDatos();
         dump("top(5): ", wc.getTop(5));
         dump("top(-5): ", wc.getTop(-5));
-        System.out.println("countBelow(2: " + wc.countBelow(2));
+        System.out.println("countBelow(2: " + wc.countBelow(2)+" )");
     }
 
     /**

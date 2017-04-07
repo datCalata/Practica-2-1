@@ -25,6 +25,11 @@ public class MeterLibros {
      */
     private static final String DON_QUIJOTE = "DonQuijote.txt";
 
+    private static final String DRACULA = "Dracula.txt";
+
+    private static final String LOSMISERABLES = "LosMiserables.txt";
+
+
     /**
      * Realizamos pruebas de medida de tiempos
      * @param args No usa argumentos
@@ -32,8 +37,11 @@ public class MeterLibros {
      */
     public static void main(String [] args) throws IOException{
         medir(LAZARILLO);
+        medir(DRACULA);
         medir(HUCKLEBERRY);
+        medir(DRACULA,LAZARILLO);
         medir(DON_QUIJOTE);
+        medir(LOSMISERABLES);
         medir(LAZARILLO, HUCKLEBERRY, DON_QUIJOTE);
     }
 
