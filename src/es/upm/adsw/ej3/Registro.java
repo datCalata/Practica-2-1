@@ -1,3 +1,5 @@
+package es.upm.adsw.ej3;
+
 /**
  * Contenedor para asociar un cnt a una palabra
  * @author adsw
